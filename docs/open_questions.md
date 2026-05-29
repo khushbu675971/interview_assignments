@@ -60,6 +60,20 @@ Production solutions should include:
 - Unity Catalog governance(metadata management, lineage tracking, access policies)
 - audit logging
 
+### Data Governance
+Unity Catalog should be used for:
+- centralized access management
+- data lineage
+- data discovery
+- auditing
+
+Delta Lake features such as:
+- schema evolution
+- time travel
+- ACID transactions
+
+should also be leveraged.
+
 ### Testing
 Automated testing should be implemented, including:
 - unit testing
@@ -79,6 +93,7 @@ This improves deployment safety and maintainability.
 ## 2. If the solution was implemented in dbt-core, how would the overall architecture change? Would there be another cloud resources needed?
 
 If the transformation layer was implemented using dbt-core, the architecture would shift toward a SQL-driven transformation framework.
+Dbt-core would orchestrate and manage SQL transformations while Databricks would remain the underlying execution engine.
 
 ### Architecture Changes
 

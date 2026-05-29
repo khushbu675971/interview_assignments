@@ -30,11 +30,11 @@ The following business logic was applied during Gold layer processing.
 
 ### 1. Filter View Events
 
-Only events with:
+Only events satisfying:
+- event_type = 'view_item'
+- parameter_name = 'item_id'
 
-event_type = 'view_item'
-
-were included in the aggregation because the datamart focuses on item view analytics.
+were included in the aggregation.
 
 ### 2. Year Extraction
 
@@ -65,12 +65,22 @@ using platform usage counts and row_number window functions.
 
 ---
 
+### 6. Item Enrichment
+
+The item master table (silver_item) is joined to provide additional business context such as:
+- item name
+- category
+
+This improves usability of the final analytical dataset.
+
 ## Datamart Attributes
 
 | Column Name | Description |
 |---|---|
-| item_id | Unique identifier of the item |
 | year | Year of the event |
+| item_id | Unique identifier of the item |
+| item_name | Item name |
+| category | Item category |
 | total_views | Total number of item views in the year |
 | item_rank | Rank of the item based on yearly views |
 | most_used_platform | Most frequently used platform for the item in the year |
@@ -108,13 +118,13 @@ This improves query performance for yearly analytical workloads.
 ## Data Flow Architecture
 
 Raw CSV Files
-      ↓
+        ↓
 Bronze Layer
 (raw ingestion)
-      ↓
+        ↓
 Silver Layer
-(cleaned & flattened)
-      ↓
+(data cleansing, payload parsing)
+        ↓
 Gold Layer
 (top_item datamart)
 
@@ -135,7 +145,8 @@ The following assumptions were made:
 - `view_item` events represent item views
 - `parameter_value` in payload represents item_id
 - event timestamps are valid and parsable
-- platform values are available in the event payload
+- parameter_name = 'item_id' identifies valid item events
+- parameter_value contains the actual item identifier
 
 ---
 
