@@ -117,16 +117,27 @@ This improves query performance for yearly analytical workloads.
 
 ## Data Flow Architecture
 
+```text
 Raw CSV Files
-        ↓
+(item.csv, event.csv)
+          │
+          ▼
 Bronze Layer
-(raw ingestion)
-        ↓
+(Raw Ingestion & Delta Storage)
+          │
+          ▼
 Silver Layer
-(data cleansing, payload parsing)
-        ↓
+(Data Cleansing, Standardization,
+JSON Parsing & Payload Flattening)
+          │
+          ▼
 Gold Layer
-(top_item datamart)
+(top_item Datamart)
+
+├── Total Item Views by Year
+├── Item Rank by Views
+└── Most Used Platform per Item
+```
 
 ---
 
