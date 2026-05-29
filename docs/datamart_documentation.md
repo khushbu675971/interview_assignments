@@ -132,10 +132,33 @@ Gold Layer
 
 ## Output Example
 
-| item_id | year | total_views | item_rank | most_used_platform |
-|---|---|---|---|---|
-| 3526 | 2025 | 1200 | 1 | android |
-| 1452 | 2025 | 980 | 2 | ios |
+| year | item_id | item_name | category | total_views | item_rank | most_used_platform |
+|--------|--------|--------|--------|--------|--------|--------|
+| 2025 | 3526 | Wireless Headphones | Electronics | 1200 | 1 | android |
+| 2025 | 1452 | Running Shoes | Sportswear | 980 | 2 | ios |
+| 2025 | 2086 | Coffee Maker | Home Appliances | 875 | 3 | web |
+
+### Output Description
+
+The `gold_top_item` datamart provides yearly item performance metrics and contains:
+
+- **year** – Calendar year extracted from the event timestamp.
+- **item_id** – Unique identifier of the item.
+- **item_name** – Business-friendly item name sourced from the item master dataset.
+- **category** – Item category sourced from the item master dataset.
+- **total_views** – Total number of item view events recorded for the item in the given year.
+- **item_rank** – Ranking of the item within the year based on descending total views.
+- **most_used_platform** – Platform with the highest number of view events for the item during the year.
+
+### Business Value
+
+The datamart enables business users to:
+
+- Identify the most popular items for each year.
+- Compare item performance across different years.
+- Analyze customer platform preferences.
+- Support merchandising and marketing decisions using item popularity trends.
+- Create dashboards and reports for item performance analysis.
 
 ---
 

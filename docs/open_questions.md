@@ -44,11 +44,21 @@ Monitoring should be added for:
 
 Alerts can be integrated with email, Slack, or monitoring platforms.
 
+### Observability
+
+Implement centralized logging and operational dashboards to monitor:
+- pipeline execution times
+- data volumes
+- failure rates
+- SLA compliance
+
 ### Incremental Processing
 The current solution processes full datasets. In production, incremental processing should be implemented using:
 - watermarking
 - change data capture
 - incremental merges
+- Delta MERGE operations
+- Auto Loader for file ingestion
 
 This improves performance and reduces processing costs.
 
